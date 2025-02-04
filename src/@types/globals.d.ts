@@ -6,3 +6,7 @@ interface BeforeInstallPromptEvent extends Event {
   }>;
   prompt(): Promise<void>;
 }
+
+interface Window {
+  MSStream?: unknown;
+}

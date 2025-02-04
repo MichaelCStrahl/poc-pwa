@@ -2,12 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-interface BeforeInstallPromptEvent extends Event {
-  readonly platforms: string[];
-  readonly userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
-  prompt(): Promise<void>;
-}
-
 export default function Home() {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
@@ -15,7 +9,7 @@ export default function Home() {
 
   useEffect(() => {
     // Verifica se o dispositivo é iOS
-    const isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+    const isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window).MSStream;
     setIsIOS(isIOSDevice);
 
     const handleBeforeInstallPrompt = (event: BeforeInstallPromptEvent) => {
